@@ -54,6 +54,7 @@
 		"stop_token": "cpp",
 		"thread": "cpp",
 		"cinttypes": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"cfloat": "cpp"
 	}
 }
