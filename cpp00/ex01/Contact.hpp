@@ -15,6 +15,7 @@ public:
 	void set_contact();
 	void display_summary(int index) const;
 	void display_details() const;
+	void validInput(const std::string &prompt, std::string &field);
 };
 
 #endif

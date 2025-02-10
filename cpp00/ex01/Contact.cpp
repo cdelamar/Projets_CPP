@@ -2,24 +2,29 @@
 #include <iostream>
 #include <iomanip>
 
+
+void Contact::validInput(const std::string &prompt, std::string &field) {
+        std::cout << prompt;
+        while (std::getline(std::cin, field)) {
+            if (!field.empty())
+                break; // Sortie de boucle si l'input est valide
+            std::cout << "Erreur : ce champ ne peut pas être vide. Veuillez réessayer.\n" << prompt;
+        }
+}
+
 void Contact::set_contact() {
-    std::cout << "Enter first name: ";
-    std::getline(std::cin, first_name);
-    std::cout << "Enter last name: ";
-    std::getline(std::cin, last_name);
-    std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickname);
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, phone_number);
-    std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, darkest_secret);
+    validInput("Enter first name: ", first_name);
+    validInput("Enter last name: ", last_name);
+    validInput("Enter nickname: ", nickname);
+    validInput("Enter phone number: ", phone_number);
+    validInput("Enter darkest secret: ", darkest_secret);
 }
 
 void Contact::display_summary(int index) const {
-    std::cout << std::setw(10) << index << "|"
-              << std::setw(10) << (first_name.size() > 10 ? first_name.substr(0, 9) + "." : first_name) << "|"
-              << std::setw(10) << (last_name.size() > 10 ? last_name.substr(0, 9) + "." : last_name) << "|"
-              << std::setw(10) << (nickname.size() > 10 ? nickname.substr(0, 9) + "." : nickname) << "\n";
+    std::cout << std::setfill (' ') << std::setw(10) << index << "|";
+    std::cout << std::setfill (' ') << std::setw(10) << (first_name.size() > 10 ? first_name.substr(0, 9) + "." : first_name) << "|";
+    std::cout << std::setfill (' ') << std::setw(10) << (last_name.size() > 10 ? last_name.substr(0, 9) + "." : last_name) << "|";
+    std::cout << std::setfill (' ') << std::setw(10) << (nickname.size() > 10 ? nickname.substr(0, 9) + "." : nickname) << "\n";
 }
 
 void Contact::display_details() const {

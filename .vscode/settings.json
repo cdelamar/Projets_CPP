@@ -55,6 +55,20 @@
 		"thread": "cpp",
 		"cinttypes": "cpp",
 		"fstream": "cpp",
-		"cfloat": "cpp"
+		"cfloat": "cpp",
+		"strstream": "cpp",
+		"bitset": "cpp",
+		"complex": "cpp",
+		"condition_variable": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"set": "cpp",
+		"optional": "cpp",
+		"mutex": "cpp",
+		"ranges": "cpp",
+		"shared_mutex": "cpp",
+		"span": "cpp",
+		"cfenv": "cpp",
+		"__nullptr": "cpp"
 	}
 }
