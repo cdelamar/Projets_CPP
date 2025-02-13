@@ -7,8 +7,8 @@ class Dog : public Animal {
 public:
 	Dog();
 	~Dog();
-	Dog ( Dog &other);
-	Dog &operator=(Dog &other);
+	Dog (const Dog &other);
+	Dog &operator=(const Dog &other);
 
 	std::string getType() const;
 	void makeSound() const;

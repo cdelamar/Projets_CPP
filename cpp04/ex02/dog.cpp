@@ -9,11 +9,11 @@ Dog::~Dog() {
 	std::cout << BLUE << "Le chien s'en va\n" << RESET;
 }
 
-Dog::Dog(Dog &other) : Animal(other) {
+Dog::Dog(const Dog &other) : Animal(other) {
 	this->type = other.getType();
 }
 
-Dog &Dog::operator=(Dog &other) {
+Dog &Dog::operator=(const Dog &other) {
 	if (this != &other)
 		type = other.type;
 	return *this;

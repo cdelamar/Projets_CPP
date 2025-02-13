@@ -2,20 +2,27 @@
 
 Dog::Dog() : Animal() {
 	type = "Dog";
+	brain = new Brain();
 	std::cout << BLUE << "Voici un chien\n" << RESET;
 }
 
 Dog::~Dog() {
+	delete brain;
 	std::cout << BLUE << "Le chien s'en va\n" << RESET;
 }
 
-Dog::Dog(Dog &other) : Animal(other) {
-	this->type = other.getType();
+Dog::Dog(const Dog &other) : Animal(other) {
+	this->type = other.type;
+	this->brain = new Brain(*other.brain); // Deep copy ici, bien
+
 }
 
-Dog &Dog::operator=(Dog &other) {
+Dog &Dog::operator=(const Dog &other) {
 	if (this != &other)
 		type = other.type;
+
+	delete this->brain; //safe
+	this->brain = new Brain(*other.brain); //la aussi deep copy
 	return *this;
 }
 

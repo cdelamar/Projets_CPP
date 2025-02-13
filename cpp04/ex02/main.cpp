@@ -6,18 +6,18 @@ int main () {
 
 	const Animal* chien = new Dog();
 	const Animal* chat = new Cat();
-	const Animal* bestiole = new Animal(); // n'est pas cense marcher
+	//const Animal* bestiole = new Animal(); // n'est pas cense marcher
 
 
 	std::cout <<"Type de 'chien' ->		" << chien->getType() << std::endl;
 	std::cout <<"Type de 'chat' ->		" << chat->getType() << std::endl;
-	std::cout <<"Type de 'bestiole' ->	" << bestiole->getType() << std::endl;
+	// std::cout <<"Type de 'bestiole' ->	" << bestiole->getType() << std::endl;
 
-	bestiole->makeSound();
+	// bestiole->makeSound();
 	chien->makeSound();
 	chat->makeSound();
 
-	delete bestiole;
+	// delete bestiole;
 	delete chien;
 	delete chat;
 

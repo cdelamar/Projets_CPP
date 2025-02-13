@@ -9,11 +9,11 @@ Cat::~Cat() {
 	std::cout << RED << "Le chat retourne dans sa litiere\n" << RESET;
 }
 
-Cat::Cat(Cat &other) : Animal(other) {
-	this->type = other.getType();
+Cat::Cat(const Cat &other) : Animal(other) {
+	this->type = other.type;
 }
 
-Cat &Cat::operator=(Cat &other) {
+Cat &Cat::operator=(const Cat &other) {
 	if (this != &other)
 		type = other.type;
 	return *this;

@@ -28,7 +28,7 @@ std::string WrongAnimal::getType() const{
 }
 
 void WrongAnimal::makeSound() const{
-	std::cout << CYAN <<"Ceci est un son animal basique\n" << RESET;
+	std::cout << CYAN <<"Ceci est un son animal bizarre\n" << RESET;
 }
 
 
