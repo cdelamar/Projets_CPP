@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <cctype>
 #include <cerrno>
@@ -12,7 +13,7 @@
 
 #define INT_TYPE	0
 #define DBL_TYPE	1
-#define FLO_TYPE	2
+#define FLT_TYPE	2
 
 class ScalarConverter {
 private:
