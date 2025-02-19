@@ -1,4 +1,4 @@
-# Character: Aragorn
+# Adventurer: Aragorn
 
 ___
 ### **Race**: Human  

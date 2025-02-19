@@ -2,8 +2,8 @@
 
 int main () {
 
-	Character warrior("Aragorn", "guerrier", "humain");
-	Character hero;
+	Adventurer warrior("Aragorn", "guerrier", "humain");
+	Adventurer hero;
 
 	hero.announce();
 	return 0;

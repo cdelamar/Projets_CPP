@@ -1,12 +1,12 @@
 #include "DnD.hpp"
 
-Character::Character()
+Adventurer::Adventurer()
 	: name("inconnu"), profession("aventurier"), race("pas de race")
 {
 	//std::cout << " creation d'un personnage : " << name << std::endl;
 }
 
-Character::Character (const Character& other)
+Adventurer::Adventurer (const Adventurer& other)
 {
 	std::cout << "Constructeur de recopie" << std::endl;
 	this->name = other.name;
@@ -14,17 +14,17 @@ Character::Character (const Character& other)
 	this->race = other.race;
 }
 
-Character::~Character()
+Adventurer::~Adventurer()
 {
 	std::cout << this->name << " has left he party" << std::endl;
 }
 
-void Character::announce()
+void Adventurer::announce()
 {
 	std::cout << "je suis " << name << ", un " << profession << std::endl;
 }
 
-Character::Character (std::string name, std::string profession, std::string race)
+Adventurer::Adventurer (std::string name, std::string profession, std::string race)
 {
 	this->name = name;
 	this->profession = profession;

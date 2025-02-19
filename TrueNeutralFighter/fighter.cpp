@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
 
-class Character {
+class Adventurer {
 private:
     std::string name;
     std::string race;
-    std::string character_class;
+    std::string Adventurer_class;
     std::string alignment;
     int strength;
     int intelligence;
@@ -16,17 +16,17 @@ private:
 
 public:
     // Constructor
-    Character(std::string n, std::string r, std::string c, std::string a,
+    Adventurer(std::string n, std::string r, std::string c, std::string a,
               int str, int intl, int dex, int con, int wis, int cha)
-        : name(n), race(r), character_class(c), alignment(a),
+        : name(n), race(r), Adventurer_class(c), alignment(a),
           strength(str), intelligence(intl), dexterity(dex),
           constitution(con), wisdom(wis), charisma(cha) {}
 
-    // Display character stats
+    // Display Adventurer stats
     void display_stats() {
         std::cout << "Name: " << name << "\n"
                   << "Race: " << race << "\n"
-                  << "Class: " << character_class << "\n"
+                  << "Class: " << Adventurer_class << "\n"
                   << "Alignment: " << alignment << "\n"
                   << "Strength: " << strength << "\n"
                   << "Intelligence: " << intelligence << "\n"
@@ -38,9 +38,9 @@ public:
 };
 
 int main() {
-    // Example character creation
-    Character my_character("Aragorn", "Human", "Fighter", "True Neutral",
+    // Example Adventurer creation
+    Adventurer my_Adventurer("Aragorn", "Human", "Fighter", "True Neutral",
                            18, 14, 16, 15, 12, 10);
-    my_character.display_stats();
+    my_Adventurer.display_stats();
     return 0;
 }

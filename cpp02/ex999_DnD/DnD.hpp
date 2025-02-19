@@ -4,19 +4,19 @@
 #include <iostream>
 #include <string>
 
-class Character {
+class Adventurer {
 private :
 	std::string name;
 	std::string profession;
 	std::string race;
 public : //coplien
 
-	Character (); //constrcuteur
-	Character (const Character& other); //recopie
-	Character operator=(const Character& other); // operateur d'affectation
-	~Character (); // destruct
+	Adventurer (); //constrcuteur
+	Adventurer (const Adventurer& other); //recopie
+	Adventurer operator=(const Adventurer& other); // operateur d'affectation
+	~Adventurer (); // destruct
 
-	Character (std::string name, std::string profession, std::string race);
+	Adventurer (std::string name, std::string profession, std::string race);
 
 	void announce();
 };
