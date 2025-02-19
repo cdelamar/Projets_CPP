@@ -1,5 +1,9 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <cmath>
+
 // ex01 : iter
 
 // on cree une 'fonction generique' (function template)
@@ -39,12 +43,14 @@
 
 
 template <typename T>
-void iter() {
-
+void iter(T *tab, int len, void (*foo)(T &src))
+{
+	for (int i = 0; i < len; i++)
+		foo(tab[i]);
 }
+// en C++11, 'for_each' de la lib <algorithm> fait quasiment pareil que notre 'iter'
 
-
-
+// -----------------------------------------
 
 //exemple perso pour le kiff
 /*

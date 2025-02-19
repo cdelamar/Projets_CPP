@@ -1,6 +1,6 @@
-NAME = BEYOND
+NAME = ex02
 
-SRC = main.cpp Engineer.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 CC = g++
