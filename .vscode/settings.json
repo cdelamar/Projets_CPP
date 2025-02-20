@@ -69,6 +69,8 @@
 		"shared_mutex": "cpp",
 		"span": "cpp",
 		"cfenv": "cpp",
-		"__nullptr": "cpp"
+		"__NULL": "cpp",
+		"*.ipp": "cpp",
+		"valarray": "cpp"
 	}
 }
