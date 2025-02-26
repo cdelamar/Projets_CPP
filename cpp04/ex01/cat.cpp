@@ -17,11 +17,12 @@ Cat::Cat(const Cat &other) : Animal(other) {
 }
 
 Cat &Cat::operator=(const Cat &other) {
-	if (this != &other)
-		type = other.type;
-	
-	delete this->brain; //safe
-	this->brain = new Brain(*other.brain); //la aussi deep copy
+	if (this != &other) {
+		Animal::operator=(other);
+		delete this->brain;
+		this->brain = (other.brain) ? new Brain(*other.brain) : NULL;
+	} //ternaire pour eviter le crash si le brain copie est vide (aussi pour pratiquer un peu le ternaire)
+	std::cout << "Opérateur d'affectation Cat appelé" << std::endl;
 	return *this;
 }
 
@@ -31,4 +32,12 @@ std::string Cat::getType() const{
 
 void Cat::makeSound() const {
 	std::cout << RED << "miaou. effectivement, c'est bien moi, le chat\n" << RESET;
+}
+
+void Cat::setBrainIdea(int index, std::string idea) {
+    brain->setBrainIdea(index, idea);
+}
+
+std::string Cat::getBrainIdea(int index) const {
+    return brain->getBrainIdea(index);
 }

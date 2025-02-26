@@ -10,12 +10,12 @@ Dog::~Dog() {
 }
 
 Dog::Dog(const Dog &other) : Animal(other) {
-	this->type = other.type;
+    std::cout << BLUE << "Copie d'un chien\n" << RESET;
 }
 
 Dog &Dog::operator=(const Dog &other) {
 	if (this != &other)
-		type = other.type;
+		Animal::operator=(other); // c'est surtout pour montrer qu'on herite bien de Animal
 	return *this;
 }
 

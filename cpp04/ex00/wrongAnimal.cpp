@@ -1,8 +1,7 @@
 #include "wrongAnimal.hpp"
 #include "animal.hpp"
 
-WrongAnimal::WrongAnimal() {
-	type = "WrongAnimal";
+WrongAnimal::WrongAnimal() : type("WrongAnimal") {
 	std::cout << "**constructeur wrongAnimal**" << std::endl;
 }
 
@@ -10,10 +9,8 @@ WrongAnimal::~WrongAnimal() {
 	std::cout << "**destructeur wrongAnimal**\n";
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &other) {
-	*this = other;
+WrongAnimal::WrongAnimal(const WrongAnimal &other) : type(other.type) {
 	std::cout << "**copie de wrongAnimal**" << std::endl;
-
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {

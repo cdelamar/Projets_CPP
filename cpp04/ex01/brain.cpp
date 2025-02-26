@@ -20,4 +20,19 @@ Brain &Brain::operator=(const Brain &other) {
 	return *this;
 }
 
+std::string Brain::getBrainIdea(int index) {
+	if (index < 0 || index >= 100) {
+		std::cerr << "Erreur: Index hors limites" << std::endl;
+		return "";
+	}
+	return idea[index];
+}
+
+void Brain::setBrainIdea(int index, std::string &newIdea) {
+	if (index < 0 || index >= 100) {
+		std::cerr << "Erreur: Index hors limites" << std::endl;
+		return;
+	}
+	idea[index] = newIdea;
+}
 

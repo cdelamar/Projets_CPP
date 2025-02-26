@@ -71,6 +71,9 @@
 		"cfenv": "cpp",
 		"__NULL": "cpp",
 		"*.ipp": "cpp",
-		"valarray": "cpp"
+		"valarray": "cpp",
+		"csignal": "cpp",
+		"typeindex": "cpp",
+		"variant": "cpp"
 	}
 }

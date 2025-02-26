@@ -10,12 +10,12 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat &other) : Animal(other) {
-	this->type = other.type;
+    std::cout << RED << "Copie d'un chat\n" << RESET;
 }
 
 Cat &Cat::operator=(const Cat &other) {
 	if (this != &other)
-		type = other.type;
+		Animal::operator=(other); //deep copy depuis la classe qui fait heriter
 	return *this;
 }
 
