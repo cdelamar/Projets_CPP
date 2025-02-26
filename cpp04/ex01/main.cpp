@@ -75,9 +75,8 @@ int main() {
     }
 
     std::cout << "\n--- MODIFICATION DES IDEES POUR VERIFIER L'INDEPENDANCE ---\n" << std::endl;
-    
     copiedDog.setBrainIdea(0, "Je suis un chien cloné !");
-    
+
     std::cout << "Nouvelle idée du chien copié (index 0): " << copiedDog.getBrainIdea(0) << std::endl;
     std::cout << "Idée du chien original (index 0) : " << originalDog.getBrainIdea(0) << std::endl;
 

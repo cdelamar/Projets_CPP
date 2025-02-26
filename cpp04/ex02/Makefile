@@ -1,6 +1,6 @@
 NAME = Animal
 
-SRC = main.cpp animal.cpp dog.cpp cat.cpp
+SRC = main.cpp animal.cpp dog.cpp cat.cpp brain.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98

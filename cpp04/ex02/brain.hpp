@@ -1,10 +1,6 @@
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
-#include "animal.hpp"
-#include "cat.hpp"
-#include "dog.hpp"
-
 #include <string>
 #include <iostream>
 
