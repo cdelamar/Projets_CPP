@@ -9,6 +9,7 @@ int main()
     vec.push_back(20);
     vec.push_back(30);
     vec.push_back(40);
+    std::vector<int> emptyVec;
 
 
     std::cout << "test 1 \n";
@@ -32,6 +33,14 @@ int main()
     std::cout << "\n\ntest 3 \n";
     try {
         std::vector<int>::iterator it = easyfind(vec, 40);
+        std::cout << "Valeur trouvée : " << *it << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Erreur : " << e.what() << std::endl;
+    }
+
+    std::cout << "\n\ntest 4 \n";
+    try {
+        std::vector<int>::iterator it = easyfind(emptyVec, 40);
         std::cout << "Valeur trouvée : " << *it << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Erreur : " << e.what() << std::endl;
