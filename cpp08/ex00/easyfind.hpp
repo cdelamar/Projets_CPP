@@ -1,5 +1,5 @@
-#ifndef EASY_HPP
-#define EASY_HPP
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <stdexcept>
 #include <vector>

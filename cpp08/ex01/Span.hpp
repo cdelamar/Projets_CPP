@@ -21,5 +21,13 @@ public:
 	int	 shortestSpan();
 	int	 longestSpan();
 
+	// la plage iterateur : template donc a faire dans le hpp
+	template <typename Iterator>
+    void addNumber(Iterator begin, Iterator end) {
+        for (Iterator it = begin; it != end; ++it) {
+            addNumber(*it); // Reutilisation de l'existant
+        }
+    }
+
 };
 #endif
