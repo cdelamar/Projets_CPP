@@ -1,0 +1,19 @@
+date | value
+2023-13-01 | 1            # Mois 13 (invalide)
+2023-02-30 | 5            # Jour 30 en février (invalide)
+abcd-ef-gh | 100          # Date non numérique
+2023-05-20 | -42          # Valeur négative
+2023-05-20 | 1001         # Valeur supérieure à 1000
+2023-05-20 | foo          # Valeur non numérique
+2023-05-20 | 42.42.42     # Valeur mal formatée
+2023-05-20 42             # Pas de séparateur |
+2023-05-20 |              # Pas de valeur après le séparateur
+ | 42                     # Pas de date
+2023-05-20|42             # Pas d’espace autour de |
+2023-05-20 | 9999999999   # Valeur beaucoup trop grande
+2011-01-01 | 1            # Date avant la plus ancienne date dans data.csv
+2023-00-15 | 10           # Mois 0 inexistant
+2023-12-00 | 10           # Jour 0 inexistant
+2023-12-15 | 1e5          # Notation scientifique ➔ devrait être "trop grand"
+2023-12-15 | 1e-5         # Notation scientifique ➔ devrait passer (si positif)
+2023-12-15 | 0            # Bordure : zéro (doit passer !)

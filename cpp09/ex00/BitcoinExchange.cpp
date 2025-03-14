@@ -3,104 +3,109 @@
 #include <sstream>
 #include <iostream>
 #include <cstdlib>
-#include <stdexcept>
+#include <cctype>
 
-BitcoinExchange::BitcoinExchange() : _rates() {}
+BitcoinExchange::BitcoinExchange() : _dataBase() {}
 
-BitcoinExchange::~BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange (const BitcoinExchange &source) : _dataBase(source._dataBase) {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) : _rates(other._rates) {}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
-    if (this != &other)
-        _rates = other._rates;
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &source)
+{
+    if (this != &source)
+    {
+        _dataBase = source._dataBase;
+    }
     return *this;
 }
 
+BitcoinExchange::~BitcoinExchange() {}
 
-void BitcoinExchange::loadDatabase(const std::string& filename) {
-    std::ifstream file(filename.c_str());
-    if (!file.is_open()) {
-        throw std::runtime_error("Error: could not open file.");
+void BitcoinExchange::loadDataCsv (const std::string &fileName)
+{
+    std::ifstream infile(fileName.c_str());
+    if (!infile)
+    {
+        std::cerr << "Error: cant open file " << fileName << std::endl;
+        return;
     }
 
     std::string line;
-    getline(file, line); // Skip the header line
+    std::getline(infile, line); // gnl c++
 
-    while (getline(file, line)) {
-        std::istringstream iss(line);
+    while (std::getline(infile, line))
+    {
+        std::stringstream ss(line); //ss car lecture/ecriture
         std::string date;
         std::string valueStr;
 
-        if (!getline(iss, date, ',') || !getline(iss, valueStr)) {
-            std::cerr << "Error: bad line in database => " << line << std::endl;
+        if (!std::getline(ss, date, ',') || !std::getline(ss, valueStr))
+        {
+            std::cerr << "Warning: incorrect data line format => " << line << std::endl;
             continue;
         }
 
+        if (!isValidDate(date))
+        {
+            std::cerr << "Warning: incorrect date => " << date << std::endl;
+            continue;
+        }
+
+        std::stringstream valueStream(valueStr);
         float value;
-        std::istringstream converter(valueStr);
-        converter >> value;
-
-        if (converter.fail()) {
-            std::cerr << "Error: bad value in database => " << valueStr << std::endl;
+        if (!(valueStream >> value)) // si la chaine dans stringstream n'est pas convertible en float
+        {
+            std::cerr << "Warning: invalid rate here => " << valueStr << std::endl;
             continue;
         }
 
-        _rates[date] = value;
+        _dataBase[date] = value;
+    }
+    infile.close();
+}
+
+float BitcoinExchange::getRate (const std::string &date) const {
+
+}
+
+//methode de parsing > loadDataCsv
+bool BitcoinExchange::isValidDate (const std::string &date) const
+{
+    //substr(0,4) > annee *
+    //substr(5,2 > mois **
+    //substr(8,2) > jour ***
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-') // YYYY-MM-DD
+        return false;
+
+    // annee
+    std::istringstream iss(date.substr()); //lecture uniquement
+    int year; //*
+    if(!(iss >> year))
+    {
+        //potentiel msg erreur
+        return false;
     }
 
-    file.close();
-}
-
-float BitcoinExchange::getRateForDate(const std::string& date) const {
-    std::map<std::string, float>::const_iterator it = _rates.lower_bound(date);
-
-    if (it != _rates.end() && it->first == date)
-        return it->second;
-
-    if (it == _rates.begin())
-        throw std::runtime_error("Error: no earlier date found.");
-
-    --it;
-    return it->second;
-}
-
-
-
-bool isValidDate(const std::string& date) {
-    if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+    // mois
+    iss.clear();
+    iss.str(date.substr(5, 2)); // YYYY-xx-DD
+    int month; //**
+    if(!(iss >> month) || month < 1 || month > 12)
+    {
+        //potentiel msg erreur
         return false;
+    }
 
-    int year, month, day;
-
-    std::istringstream yearStream(date.substr(0, 4));
-    yearStream >> year;
-    if (yearStream.fail())
+    // jour
+    iss.clear();
+    iss.str(date.substr(8, 2)); // YYYY-MM-xx
+    int day;
+    if (!(iss >> day) || day < 1 || day > 31)
+    {
+        //potentiel msg erreur
         return false;
+    }
 
-    std::istringstream monthStream(date.substr(5, 2));
-    monthStream >> month;
-    if (monthStream.fail())
-        return false;
 
-    std::istringstream dayStream(date.substr(8, 2));
-    dayStream >> day;
-    if (dayStream.fail())
-        return false;
 
-    // Validation basique
-    if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31)
-        return false;
 
-    return true;
-}
-
-bool isValidValue(const std::string& strValue, float& value) {
-    std::istringstream iss(strValue);
-    iss >> value;
-
-    if (iss.fail() || !iss.eof())
-        return false;
-
-    return true;
 }
