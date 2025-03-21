@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <stdexcept>
+#include <set>
 
 class PmergeMe
 {

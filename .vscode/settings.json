@@ -74,6 +74,7 @@
 		"valarray": "cpp",
 		"csignal": "cpp",
 		"typeindex": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"*.tpp": "cpp"
 	}
 }

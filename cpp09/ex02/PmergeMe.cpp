@@ -65,7 +65,7 @@ void PmergeMe::sortVector()
 	std::vector<int> pend;
 
 	// on cree des paires
-	for (int i = 0; i < _stackVector.size(); i += 2)
+	for (std::vector<int>::size_type i = 0; i < _stackVector.size(); i += 2)
 	{
 		if (i + 1 < _stackVector.size()) // si jai assez pour une pair
 		{
@@ -88,7 +88,7 @@ void PmergeMe::sortVector()
 	}
 
 	// Tri des paires de la mainchain
-	for (int i = 1; i < mainChain.size(); ++i)
+	for (std::vector<int>::size_type i = 1; i < mainChain.size(); ++i)
 	{
 		int key = mainChain[i];
 		int j = i;
@@ -122,7 +122,7 @@ void PmergeMe::sortVector()
 	}
 
 	// insertion des petites valeurs (pend) dans la mainchain
-	for (int i = 0; i < pend.size(); ++i)
+	for (std::vector<int>::size_type i = 0; i < pend.size(); ++i)
 	{
 		int toInsert = pend[i];
 
@@ -153,7 +153,7 @@ void PmergeMe::sortDeque ()
 	std::deque<int> mainChain;
 	std::deque<int> pend;
 
-	for(int i = 0; i <= _stackDeque.size(); i += 2)
+	for(std::vector<int>::size_type i = 0; i < _stackDeque.size(); i += 2)
 	{
 		if (i + 1 <_stackDeque.size())
 		{
@@ -164,7 +164,7 @@ void PmergeMe::sortDeque ()
 				std::swap(first, second);
 
 			mainChain.push_back(second);
-			mainChain.push_back(first);
+			pend.push_back(first);
 		}
 
 		else
@@ -173,7 +173,7 @@ void PmergeMe::sortDeque ()
 		}
 	}
 
-	for(int i = 0; i < mainChain.size(); ++i)
+	for(std::vector<int>::size_type i = 0; i < mainChain.size(); ++i)
 	{
 		int key = mainChain[i];
 		int j = i;
@@ -186,14 +186,55 @@ void PmergeMe::sortDeque ()
 		mainChain[j] = key;
 	}
 
-	for (int i = 0; i < pend.size(); ++i)
+	for (std::vector<int>::size_type i = 0; i < pend.size(); ++i)
 	{
 		int toInsert = pend[i];
 
-		std:deque<int>::iterator pos = std::lower
+		std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), toInsert);
+
+		mainChain.insert(pos,toInsert);
 	}
+
+	_stackDeque = mainChain;
 }
 
+void PmergeMe::parseArgs(char **argv)
+{
+	std::set<int> verified; // container qui gere les double (std::map etant deja pris pour ex00)
+
+	for (std::vector<int>::size_type i = 1; argv[i] != NULL; ++i)
+	{
+		std::string arg = argv[i];
+
+		if (arg.empty())
+			throw std::invalid_argument("Empty arguments");
+
+		for (std::vector<int>::size_type j = 0; j < arg.length(); ++j)
+		{
+			if (!std::isdigit (arg[j]))
+				throw std::invalid_argument("argument only allow positive numbers");
+		}
+
+		std::istringstream iss(arg);
+		int value;
+
+		if (!(iss >> value)) // si on ne peut pas convertir en int
+			throw std::invalid_argument("Can't convert arguments to integers");
+
+		if (verified.find(value) != verified.end()) // doublons
+			throw std::invalid_argument("Found duplicated value '" + arg + "'");
+
+		// ajout des valeurs dans les 2 container
+		_stackVector.push_back(value);
+		_stackDeque.push_back(value);
+
+		// placement de la valeur dans le container de verif (std::set)
+		verified.insert(value);
+	}
+
+	if (_stackVector.empty() || _stackDeque.empty())
+		throw std::runtime_error("no valid input provided");
+}
 
 void PmergeMe::exec (char **argv)
 {
@@ -203,7 +244,7 @@ void PmergeMe::exec (char **argv)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Error :" << e.what() << std::endl;
 		return;
 	}
 
@@ -226,6 +267,9 @@ void PmergeMe::exec (char **argv)
 
 	printAfter();
 
-	std::cout << "vector Timer : " << vectorChrono << " microsec" << std::endl;
-	std::cout << "deque Timer : " << dequeChrono << " microsec" << std::endl;
+	std::cout << "Time to process a range of " << _stackVector.size()
+          << " elements with std::vector : " << vectorChrono << " us" << std::endl;
+
+	std::cout << "Time to process a range of " << _stackDeque.size()
+          << " elements with std::deque : " << dequeChrono << " us" << std::endl;
 }
