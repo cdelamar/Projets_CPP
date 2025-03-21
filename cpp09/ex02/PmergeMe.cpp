@@ -88,20 +88,41 @@ void PmergeMe::sortVector()
 	}
 
 	// Tri des paires de la mainchain
-	for (size_t i = 1; i < mainChain.size(); ++i)
+	for (int i = 1; i < mainChain.size(); ++i)
 	{
 		int key = mainChain[i];
 		int j = i;
+		/*
+		un exemple concret pour la boucle ci dessous :
+
+		main Chain = [2, 4, 7, 5, 9]
+
+		si j'arrive a i = 3 :
+		key = 5 et j = 3 (j = i)
+		[2, 4, 7, 5, 9]
+				  ^key (mainChain[3])
+
+		j - 1 est donc plus grand que key (7 > 5)
+		in donne 7 a mainchain[j]
+
+		on decremente
+		et on rejoute key
+		*/
 		while (j > 0 && mainChain[j - 1] > key)
 		{
 			mainChain[j] = mainChain[j - 1];
 			--j;
 		}
 		mainChain[j] = key;
+
+		// EN BREF :
+		// cette boucle marche a peu pres comme un std::swap
+		// a l'exception pres que l'on DECALE la valeur plutot que 
+		// de l'echanger
 	}
 
 	// insertion des petites valeurs (pend) dans la mainchain
-	for (size_t i = 0; i < pend.size(); ++i)
+	for (int i = 0; i < pend.size(); ++i)
 	{
 		int toInsert = pend[i];
 
@@ -112,12 +133,66 @@ void PmergeMe::sortVector()
 		// alors on utilise insert sur la position (pos) qu'on a sauvegarder
 		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), toInsert);
 		mainChain.insert(pos, toInsert);
+		//differences pertinentes entre un iterator et un pointeur dans une chaine de char
+		// iterator n'est pas natif au langage (std::, il est gere la par la STL), contrairement aux pointeurs
+		// une analogie dangereuse, car il arrive d'appeler le pointeur vers ce container (*it par ex), donc pas tout a fait pareil
+		// un pointeur n'a aucune securite, iterator est moins dangereux
+		// iterator ne se cantonne qu'a son container DANS LES LIMITES DE LA LOGIQUE DU PROGRAMME,
+		// alors qu'un pointeur reste un pointeur
 	}
 
 	// mise a jour et voila
 	_stackVector = mainChain;
 }
 
+void PmergeMe::sortDeque ()
+{
+	if (_stackDeque.size() <= 1)
+		return;
+
+	std::deque<int> mainChain;
+	std::deque<int> pend;
+
+	for(int i = 0; i <= _stackDeque.size(); i += 2)
+	{
+		if (i + 1 <_stackDeque.size())
+		{
+			int first = _stackDeque[i];
+			int second = _stackDeque[i + 1];
+
+			if (first > second)
+				std::swap(first, second);
+
+			mainChain.push_back(second);
+			mainChain.push_back(first);
+		}
+
+		else
+		{
+			mainChain.push_back(_stackDeque[i]);
+		}
+	}
+
+	for(int i = 0; i < mainChain.size(); ++i)
+	{
+		int key = mainChain[i];
+		int j = i;
+
+		while (j > 0 && mainChain[j - 1] > key)
+		{
+			mainChain[j] = mainChain[j - 1];
+			--j;
+		}
+		mainChain[j] = key;
+	}
+
+	for (int i = 0; i < pend.size(); ++i)
+	{
+		int toInsert = pend[i];
+
+		std:deque<int>::iterator pos = std::lower
+	}
+}
 
 
 void PmergeMe::exec (char **argv)
