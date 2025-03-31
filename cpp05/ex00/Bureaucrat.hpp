@@ -24,8 +24,20 @@ public:
 	void upGrade();
 	void downGrade();
 
+	//std::exception contient une methode en polymorphisme dynamique
+	// ca veut dire que tout l'interet et de redefinir le message
+	// qu'on envoie avec
+
 	class GradeTooHighException : public std::exception
 	{
+		// what() : c'est le message qu'on implemente
+		// throw() : ici, throw() est vide, et nous informe donc
+		// qu'il ne lancera pas d'exception apres
+		// ALTERNATIVE post C++98 : noexcept
+
+		//pourquoi mettre throw() vide ?
+		//pour garantir qu'aucune exception ne sera levees apres what()
+		//LE CODE FONCTIONNE MEME SANS THROW()
 		public:
 			const char* what() const throw();
 	};
