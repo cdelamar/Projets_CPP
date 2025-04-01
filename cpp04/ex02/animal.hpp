@@ -23,7 +23,7 @@ public:
 	Animal &operator=(const Animal &other);
 
 	std::string getType() const;
-	virtual void makeSound() const = 0;
+	virtual void makeSound() const = 0; // virtuel pur
 };
 
 #endif

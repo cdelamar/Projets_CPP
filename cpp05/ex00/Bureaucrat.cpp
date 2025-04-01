@@ -12,7 +12,8 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name)
 {
-	this->_grade = other._grade;
+	if (this != &other)
+		this->_grade = other._grade;
 	std::cout << _name << ": (COPY) hello, new grade here : " << _grade << std::endl;
 }
 
@@ -58,12 +59,12 @@ void Bureaucrat::downGrade()
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return("Grade too high\n");
+	return("Grade too high");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return("Grade too low\n");
+	return("Grade too low");
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)

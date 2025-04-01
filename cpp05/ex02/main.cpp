@@ -75,7 +75,7 @@ int main() {
 
 		std::cout << BLUE <<"\n---- Creation des formulaires ----\n" << std::endl << RESET;
 
-		ShrubberyCreationForm   shrub("Shrubbery");
+		ShrubberyCreationForm   shrub("bonjour_je_test");
 		RobotomyRequestForm     robot("Robotomy");
 		PresidentialPardonForm  pardon("Pardon");
 
