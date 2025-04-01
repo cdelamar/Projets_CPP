@@ -40,7 +40,7 @@ struct formEntry {
 };
 
 AForm *Intern::makeForm(const std::string &nameForm, const std::string &target) const {
-	static const formEntry formTab[] = {
+	formEntry formTab[] = {
 		{ "shrubbery creation", &createShrubbery},
 		{ "robotomy request", &createRobotomy},
 		{ "presidential pardon", &createPardon}
@@ -53,7 +53,7 @@ AForm *Intern::makeForm(const std::string &nameForm, const std::string &target) 
 		}
 	}
 
-	std::cout << "Error: Form type " << nameForm << "doesn't match" << std::endl;
+	std::cout << "Error: Form type " << nameForm << " doesn't match" << std::endl;
 	return NULL;
 }
 
