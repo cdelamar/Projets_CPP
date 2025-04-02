@@ -10,6 +10,7 @@
 #include <limits>
 #include <climits>
 #include <cfloat>
+#include <cmath>
 
 #define INT_TYPE	0
 #define DBL_TYPE	1
@@ -23,7 +24,7 @@ private:
 	ScalarConverter &operator=(const ScalarConverter &src);
 
 public:
-	static void convert(std::string value);
+	static void convert(const std::string &literal);
 };
 
 #endif

@@ -19,6 +19,5 @@ Data* Serializer::deserialize(uintptr_t raw)
 {
 	// prend 'raw'
 	// return 'raw' en tant que 'Data *'
-	Data *data = reinterpret_cast<Data*>(raw);
-
+	return ( reinterpret_cast<Data*>(raw) );
 }

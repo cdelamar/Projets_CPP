@@ -15,6 +15,8 @@
 struct Data {
 	uintptr_t value;
 	std::string dataAdress;
+
+	Data() : value(0), dataAdress("") {}
 };
 
 class Serializer {
@@ -24,6 +26,7 @@ private:
 	Serializer(const Serializer &src);
 	Serializer &operator=(const Serializer &src);
 
+public:
 	static uintptr_t	serialize(Data* ptr);
 	static Data*		deserialize(uintptr_t raw);
 };
