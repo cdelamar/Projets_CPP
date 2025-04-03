@@ -35,9 +35,9 @@ int main ()
         std::cout << "dynamic_cast<Base* -> B*>: NULL ❌ cast refusé" << std::endl;
 
     delete fakeBase;
-
+*/
 	delete test;
 	return 0;
 
-*/
+
 }
