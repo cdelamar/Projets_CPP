@@ -1,5 +1,13 @@
 #include "ScalarConverter.hpp"
 
+	ScalarConverter::ScalarConverter() {}
+	ScalarConverter::~ScalarConverter() {}
+	ScalarConverter::ScalarConverter(const ScalarConverter &src) { (void)src; }
+	ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src)
+    {
+        (void)src;
+        return *this;
+    }
 
 // std::strtol  : convertit une chaîne en long (base donnée), stocke dans un pointeur la fin de la conversion.
 // std::strtof  : convertit une chaîne en float.

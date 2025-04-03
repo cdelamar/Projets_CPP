@@ -15,6 +15,7 @@ int main (int argc, char **argv)
 		std::cout << "please enter a viable value \n";
 		return 0;
 	}
+
 	ScalarConverter::convert(value);
 	return 0;
 }
