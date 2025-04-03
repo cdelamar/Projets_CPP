@@ -6,7 +6,6 @@ int main() {
     original.dataAdress = "test bonjour";
 
     uintptr_t raw = Serializer::serialize(&original);
-
     Data* recovered = Serializer::deserialize(raw);
 
     std::cout << "Original address : " << &original << std::endl;

@@ -15,7 +15,7 @@ Base *makeB() {return new B();}
 Base *makeC() {return new C();}
 // je cree ces ptites fonctions ici pour le tableau de pointeurs sur fonctions.
 // plus scalable qu'un if/else, mais pas forcement necessaire sur un ptit exo
-// comme celui ci, c'est juste pour pratiquer le concept !
+// comme celui ci, c'est juste pour pratiquer le concept
 
 
 Base *generate(void)
@@ -26,7 +26,6 @@ Base *generate(void)
 	// ici, '(**diceTab)' retournera une erreur a la compilation,
 	// car il considere que c'est un pointeur sur une unique fonction.
 	// pas le choix, il faut les crochets;
-	// ! : on oublie pas les parentheses en car tableaux de FONCTIONS
 
 
 	return diceTab[dice]();
