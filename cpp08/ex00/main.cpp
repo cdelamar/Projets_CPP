@@ -13,36 +13,48 @@ int main()
 
 
     std::cout << "test 1 \n";
-    try {
-        std::vector<int>::iterator it = easyfind(vec, 34);
+    try
+    {
+        std::vector<int>::iterator it = easyfind(vec, 1);
         std::cout << "Valeur trouvée : " << *it << std::endl;
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
 
 
     std::cout << "\n\ntest 2 \n";
-    try {
+    try
+    {
         std::vector<int>::iterator it = easyfind(vec, 30);
         std::cout << "Valeur trouvée : " << *it << std::endl;
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
 
 
     std::cout << "\n\ntest 3 \n";
-    try {
+    try
+    {
         std::vector<int>::iterator it = easyfind(vec, 40);
         std::cout << "Valeur trouvée : " << *it << std::endl;
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
 
     std::cout << "\n\ntest 4 \n";
-    try {
+    try
+    {
         std::vector<int>::iterator it = easyfind(emptyVec, 40);
         std::cout << "Valeur trouvée : " << *it << std::endl;
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
 

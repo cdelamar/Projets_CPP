@@ -23,10 +23,10 @@ public:
 
 	// la plage iterateur : template donc a faire dans le hpp
 	template <typename Iterator>
-    void addNumber(Iterator begin, Iterator end) {
-        for (Iterator it = begin; it != end; ++it) {
+    void addNumber(Iterator begin, Iterator end)
+	{
+        for (Iterator it = begin; it != end; ++it)
             addNumber(*it); // Reutilisation de l'existant
-        }
     }
 
 };

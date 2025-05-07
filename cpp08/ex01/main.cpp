@@ -18,20 +18,27 @@ int main() {
 
         // ➤ Test dépassement de capacité
         std::cout << "\n>>> TEST CAPACITE DEPASSEE" << std::endl;
-        try {
+        try
+        {
             sp.addNumber(42); // Devrait throw
-        } catch (const std::exception& e) {
+        }
+        catch (const std::exception& e)
+        {
             std::cerr << "Erreur attendue : " << e.what() << std::endl;
         }
 
         // ➤ Test SANS AUCUNE VALEUR
         std::cout << "\n>>> TEST SANS AUCUNE VALEUR" << std::endl;
         Span sp_empty(5);
-        try {
+        try
+        {
             sp_empty.shortestSpan(); // Doit throw
-        } catch (const std::exception& e) {
+        }
+        catch (const std::exception& e)
+        {
             std::cerr << "Erreur attendue (shortestSpan): " << e.what() << std::endl;
         }
+
         try {
             sp_empty.longestSpan(); // Doit throw
         } catch (const std::exception& e) {
