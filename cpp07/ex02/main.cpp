@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Array.hpp"
 
-int main() {
-    try {
+int main()
+{
+    try
+    {
         Array<int> a(5);
         for (unsigned int i = 0; i < a.size(); i++)
             a[i] = i * 2;
@@ -32,9 +34,12 @@ int main() {
         std::cout << std::endl;
 
         // Test exception
-        std::cout << strArr[5] << std::endl;  // Doit lever une exception
+        std::cout << strArr[5] << std::endl;  // Doit lever une exception a ce moment la
 
-    } catch (const std::exception& e) {
+    }
+
+    catch (const std::exception& e)
+    {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
     return 0;
